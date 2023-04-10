@@ -1,0 +1,80 @@
+<Gerenciador>
+    Inicio:
+        name: 'inicio'
+    Malte:
+        name: 'malte'
+        
+<Inicio>:
+    BoxLayout:
+        orientation: 'vertical'
+        canvas: 
+            Color:
+                rgba: 1 , 1 , 1 , 1
+            Rectangle: 
+                size: self.size
+                pos: self.pos
+                source: 'cevada.png'
+        ActionBar:
+            ActionView:
+                ActionPrevious: 
+                    title: '                                                            Bem vindo ao App - AiForReceiving'
+                ActionButton:
+                    text: 'Sair do App'
+                    on_release: root.confirmacao()
+        ScrollView:
+            BoxLayout:
+                orientation: 'vertical'
+                padding: 100
+                spacing: 15  
+                Botao:
+                    text: 'Iniciar Extração de Dados'
+                    color: 1 , 1 , 1 , 1
+                    font_size: 16
+                    size: 200, 50
+                    size_hint: None, None
+                    pos_hint: {'center_x':.5, 'center_y': .5}
+                    on_release: app.root.current = 'malte'
+<Malte>:
+    BoxLayout:
+        orientation: 'vertical'
+        ActionBar:
+            ActionView:
+                ActionPrevious: 
+                    title: 'Volta pro Inicio'
+                    on_release: app.root.current = 'inicio'
+                ActionButton:
+                    text: 'Sair do App'
+                    on_release: root.confirmacao()
+        ScrollView:
+            BoxLayout:
+                id: boxMalte
+                orientation: 'vertical'
+                spacing: 10
+                Camera:
+                    id: cameraMalte
+                    resolution: (640, 480)
+                    play: False
+                BotaoAlternancia:
+                    text: 'Habilita Câmera'
+                    font_size: 16
+                    size: 200, 50
+                    size_hint: None, None
+                    pos_hint: {'center_x':0.5, 'center_y':0.5}
+                    height: '48dp'
+                    on_press: cameraMalte.play = not cameraMalte.play
+                Botao:
+                    text: 'Malte'
+                    font_size: 16
+                    size: 200, 50
+                    size_hint: None, None
+                    pos_hint: {'center_x':0.5, 'center_y':0.5}
+                    height: '48dp'
+                    on_press: root.captureMalte()
+                Botao:
+                    text: 'Maltose'
+                    font_size: 16
+                    size: 200, 50
+                    size_hint: None, None
+                    pos_hint: {'center_x':0.5, 'center_y':0.5}
+                    height: '48dp'
+                    on_press: root.captureMaltose()
